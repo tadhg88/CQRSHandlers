@@ -1,0 +1,5 @@
+CommandHandlersMapping/obj/
+CommandHandlersMapping/bin/
+.vs/
+Handlers.Api/obj/
+Handlers.Api/bin/
