@@ -47,8 +47,7 @@ namespace Handlers.Api
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            // builder.RegisterModule<TestModule>();
-            builder.RegisterModule<TestModule>();
+            builder.RegisterModule<ModuleBase>();
         }
     }
 }

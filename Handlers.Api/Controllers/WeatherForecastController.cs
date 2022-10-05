@@ -14,19 +14,26 @@ namespace Handlers.Api.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+        //private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ICommandDispatcher _commandDispatcher;
 
         private readonly ITest _test;
 
-        public WeatherForecastController(ITest test)
-        {
-            _test = test;
-        }
+        //public WeatherForecastController(ITest test)
+        //{
+        //    _test = test;
+        //}
 
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
+        public WeatherForecastController(ITest test, ICommandDispatcher commandDispatcher)
+        {
+            _test = test;
+            _commandDispatcher = commandDispatcher;
+        }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
@@ -41,6 +48,13 @@ namespace Handlers.Api.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpPost("[action]")]
+        public async Task TestMyHandler(TestCommand command)
+        {
+            var des = "fgdfg";
+            await _commandDispatcher.ExecuteAsync(command);
         }
     }
 }
