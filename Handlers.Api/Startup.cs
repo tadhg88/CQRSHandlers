@@ -28,6 +28,8 @@ namespace Handlers.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // RegisterAndResolveLocally();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -43,6 +45,31 @@ namespace Handlers.Api
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private static void RegisterAndResolveLocally()
+        {
+            var containerBuilder = new ContainerBuilder();
+
+            //containerBuilder.RegisterType<MessageHandler>().As<IHandler>();
+
+            // Creating a new AutofacServiceProvider makes the container
+            // available to your app using the Microsoft IServiceProvider
+            // interface so you can use those abstractions rather than
+            // binding directly to Autofac.
+            containerBuilder.RegisterType<MyTest>().As<ITest>();
+
+            var container1 = containerBuilder.Build();
+            var serviceProvider = new AutofacServiceProvider(container1);
+
+            //var ic = serviceProvider.GetService<ITest>();
+            //ic.DoStuff("do iiiit");
+
+            using (var scope = container1.BeginLifetimeScope())
+            {
+                var writer = scope.Resolve<ITest>();
+                writer.WriteToOutput("do iiiit");
+            }
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
