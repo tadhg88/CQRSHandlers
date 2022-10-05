@@ -16,13 +16,7 @@ namespace Handlers.Api.Controllers
     {
         //private readonly ILogger<WeatherForecastController> _logger;
         private readonly ICommandDispatcher _commandDispatcher;
-
         private readonly ITest _test;
-
-        //public WeatherForecastController(ITest test)
-        //{
-        //    _test = test;
-        //}
 
         private static readonly string[] Summaries = new[]
         {
@@ -53,7 +47,6 @@ namespace Handlers.Api.Controllers
         [HttpPost("[action]")]
         public async Task TestMyHandler(TestCommand command)
         {
-            var des = "fgdfg";
             await _commandDispatcher.ExecuteAsync(command);
         }
     }

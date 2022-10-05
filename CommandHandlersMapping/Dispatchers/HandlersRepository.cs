@@ -21,13 +21,6 @@ namespace CommandHandlersMapping.Dispatchers
         public object FindByHandlerType(Type handler)
         {
             _resolver.TryResolve(handler, out var result);
-
-            var resfdf = _resolver.Resolve<ITest>();
-            var tr = _resolver.TryResolve<ITest>(out var ffs);
-
-            resfdf.WriteToOutput("resolved");
-            ffs.WriteToOutput("resolved AGAIN");
-
             return result;
         }
 
