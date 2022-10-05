@@ -22,6 +22,7 @@ namespace CommandHandlersMapping.DependencyModules
             //builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>().InstancePerLifetimeScope();
             //builder.RegisterType<HandlersRepository>().As<IHandlersRepository>().InstancePerLifetimeScope();
 
+            base.Load(builder);
 
             // RegisterAllHandlersTypes(builder);
         }
