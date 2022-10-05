@@ -1,14 +1,14 @@
 ﻿using Autofac;
+using Autofac.Features.ResolveAnything;
 using CommandHandlersMapping.CommandHandler;
 using CommandHandlersMapping.Commands;
-using CommandHandlersMapping.DependencyModules;
 using CommandHandlersMapping.Dispatchers;
 using CommandHandlersMapping.Handlers;
 using CommandHandlersMapping.Tests;
 
-namespace Handlers.Api
+namespace CommandHandlersMapping.DependencyModules
 {
-    public class TestModuleLocally : Module
+    public class TestModule : ModuleBase
     {
         // todo wtf is happening here??
         protected override void Load(ContainerBuilder builder)
@@ -17,12 +17,11 @@ namespace Handlers.Api
 
             builder.Register(c => new MyTest()).As<ITest>();
 
-            // builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
-
             //builder.RegisterType<TestCommandHandler>().As<ICommandHandler>().InstancePerLifetimeScope();
             //builder.RegisterType<TestCommand>().As<ICommand>().InstancePerLifetimeScope();
-            //builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>().InstancePerLifetimeScope(); ;
+            //builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>().InstancePerLifetimeScope();
             //builder.RegisterType<HandlersRepository>().As<IHandlersRepository>().InstancePerLifetimeScope();
+
 
             // RegisterAllHandlersTypes(builder);
         }

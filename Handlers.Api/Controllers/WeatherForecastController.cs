@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CommandHandlersMapping.Commands;
+using CommandHandlersMapping.Dispatchers;
+using CommandHandlersMapping.Tests;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
